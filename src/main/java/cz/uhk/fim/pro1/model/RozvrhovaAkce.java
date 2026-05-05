@@ -1,5 +1,9 @@
 package cz.uhk.fim.pro1.model;
 
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import cz.uhk.fim.pro1.fileOperations.TypUcebnyAdapter;
+
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,12 +12,21 @@ public class RozvrhovaAkce {
     public enum TypAkce {prednaska,cviceni;}
     TypAkce typAkce;
     Semestr semestr;
-    LocalTime casOd;
-    LocalTime casDo;
+    @SerializedName("denZkr")
     Den den;
 
+    @SerializedName("hodinaSkutOd")
+    @JsonAdapter(TypUcebnyAdapter.class)
+    LocalTime casOd;
+    @SerializedName("hodinaSkutDo")
+    @JsonAdapter(TypUcebnyAdapter.class)
+    LocalTime casDo;
+
     Predmet predmet;
+    String budova;
+    @SerializedName("mistnost")
     Ucebna ucebna;
+    @SerializedName("planObsazeni")
     int kapacita;
     Ucitel ucitel;
     List<Student>  studenti;

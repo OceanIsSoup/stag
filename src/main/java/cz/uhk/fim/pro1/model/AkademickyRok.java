@@ -56,7 +56,7 @@ public class AkademickyRok {
         Rozvrh rou = rozvrhOsoby(semestr, ucitel.id);
         Rozvrh rom = rozvrhMistnosti(semestr, ucebna.zkratka);
 
-        int irop = rop.index(akce);
+        int irop = rop.indexPredmetu(akce);
         int irou = rou.index(akce);
         int irom = rom.index(akce);
 

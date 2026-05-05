@@ -1,6 +1,6 @@
 package cz.uhk.fim.pro1.model;
 
-import cz.uhk.fim.pro1.fileOperations.CsvOperations;
+import cz.uhk.fim.pro1.fileOperations.FileOperations;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -94,20 +94,43 @@ public class Fakulta {
                 ucebny.get("J20"),
                 ucitele.get("246023")
                 );
-
-                RozvrhovaAkce pro1cv1 = vytvorRA(
+        RozvrhovaAkce pro1cv1 = vytvorRA(
                 Semestr.LS,
                 RozvrhovaAkce.TypAkce.cviceni,
-                Den.Po,
-                LocalTime.of(15,45),
-                LocalTime.of(17,20),
+                Den.Ut,
+                LocalTime.of(10,45),
+                LocalTime.of(12,20),
                 predmety.get("PRO1"),
                 ucebny.get("J23"),
                 ucitele.get("246023")
                 );
 
+                RozvrhovaAkce pro1cv2 = vytvorRA(
+                Semestr.LS,
+                RozvrhovaAkce.TypAkce.cviceni,
+                Den.Ut,
+                LocalTime.of(12,25),
+                LocalTime.of(14,00),
+                predmety.get("PRO1"),
+                ucebny.get("J23"),
+                ucitele.get("246023")
+                );
+
+                RozvrhovaAkce pro1kolize = vytvorRA(
+                Semestr.LS,
+                RozvrhovaAkce.TypAkce.cviceni,
+                Den.Ut,
+                LocalTime.of(13,55),
+                LocalTime.of(19,00),
+                predmety.get("PRO1"),
+                ucebny.get("J22"),
+                ucitele.get("1388")
+                );
+
         ar().pridejAkci(pro1cv0);
         ar().pridejAkci(pro1cv1);
+        ar().pridejAkci(pro1cv2);
+        ar().pridejAkci(pro1kolize);
     }
 
     public void pridejAkci(RozvrhovaAkce akce, int rok) {
@@ -119,11 +142,11 @@ public class Fakulta {
     }
 
     public void load() {
-        CsvOperations.loadPredmetyMap("predmety.csv", this.predmety);
-//        CsvOperations.loadUcitele("ucitele.csv", this.ucitele);
-        CsvOperations.loadUciteleMap("ucitele.csv", this.ucitele);
-//        CsvOperations.loadUcebny("mistnosti.csv", this.ucebny);
-        CsvOperations.loadUcebnyMap("mistnosti.csv", this.ucebny);
+        FileOperations.loadPredmetyMap("predmety.csv", this.predmety);
+//        FileOperations.loadUcitele("ucitele.csv", this.ucitele);
+        FileOperations.loadUciteleMap("ucitele.csv", this.ucitele);
+//        FileOperations.loadUcebny("mistnosti.csv", this.ucebny);
+        FileOperations.loadUcebnyMap("mistnosti.csv", this.ucebny);
     }
 
     @Override
@@ -137,8 +160,8 @@ public class Fakulta {
         b.append("Ucebny: ").append(ucebny.values()).append("\n");
         b.append("Akademicky rok: ").append(aktualniAR).append(" " + aktualniSemestr()).append("\n");
         b.append("Rozvrhove akce: ").append(ar().rozvrhoveAkce).append("\n");
-        b.append("Archiv: ").append("\n");
-        b.append("RA: ").append(archiv).append("\n");
+//        b.append("Archiv: ").append("\n");
+//        b.append("RA: ").append(archiv).append("\n");
 
         return b.toString();
     }

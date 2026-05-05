@@ -35,6 +35,9 @@ public class Rozvrh {
 
         return index;
     }
+    public int indexPredmetu(RozvrhovaAkce akce) {
+        return 0;
+    }
 
     public void vlozAkci(int index, RozvrhovaAkce akce) {
         int den = akce.den.ordinal();
