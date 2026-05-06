@@ -35,6 +35,11 @@ public class Ucitel extends Osoba {
 
     @Override
     public String toString() {
-        return "id: " + id + " " + jmeno + " " + prijmeni + " " + katedra + " " + telefon;
+        return "|"+String.format("%-6s : %-18s",id,jmeno+" "+prijmeni)+"|";
+    }
+
+
+    public String toTable(){
+        return "|"+String.format("%-8s | %-18s | %-5s | %-17s",id,jmeno+" "+prijmeni, katedra, telefon)+"|";
     }
 }

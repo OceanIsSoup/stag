@@ -83,6 +83,22 @@ public class Fakulta {
         System.out.println(bau);
     }
 
+    public HashMap<String, Ucitel> getUcitele() {
+        return ucitele;
+    }
+
+    public HashMap<String, Student> getStudenti() {
+        return studenti;
+    }
+
+    public HashMap<String, Predmet> getPredmety() {
+        return predmety;
+    }
+
+    public HashMap<String, Ucebna> getUcebny() {
+        return ucebny;
+    }
+
     public void pridejRA() {
         RozvrhovaAkce pro1cv0 = vytvorRA(
                 Semestr.LS,

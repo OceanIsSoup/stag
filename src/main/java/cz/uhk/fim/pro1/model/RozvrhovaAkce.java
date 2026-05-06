@@ -85,7 +85,7 @@ public class RozvrhovaAkce {
 
     @Override
     public String toString() {
-        return predmet.zkratka + ", " + typAkce + ", " + ucebna.zkratka + ", " + ucitel;
+        return predmet.zkratka + ", " + typAkce + ", " + ucebna.zkratka + ", " + ucitel.jmeno+" "+ucitel.prijmeni;
 
     }
 
