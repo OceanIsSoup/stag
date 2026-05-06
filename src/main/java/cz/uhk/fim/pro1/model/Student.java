@@ -35,6 +35,8 @@ public class Student extends Osoba {
         s += ", " + username + ", rocnik: " + rok + ", obor: " + obor;
         return s;
     }
-
+    public String toTable(){
+        return "|"+String.format("%-8s | %-18s | %-5s | %-17s",id,jmeno+" "+prijmeni, rok, obor+"|");
+    }
 
 }

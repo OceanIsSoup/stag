@@ -59,4 +59,7 @@ public class Predmet {
     public String toString() {
         return zkratka + " (" + rozsah + ") " + zakonceni + " " + kreditu + "kr.";
     }
+
+    public String toTable(){
+        return "|"+String.format("%-8s | %-18s | %-5s | %-17s",zkratka,rozsah, zakonceni,kreditu+"|");    }
 }
