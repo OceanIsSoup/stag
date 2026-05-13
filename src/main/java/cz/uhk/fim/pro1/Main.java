@@ -1,9 +1,6 @@
 package cz.uhk.fim.pro1;
 
-import cz.uhk.fim.pro1.model.Fakulta;
-import cz.uhk.fim.pro1.model.Predmet;
-import cz.uhk.fim.pro1.model.Student;
-import cz.uhk.fim.pro1.model.Ucitel;
+import cz.uhk.fim.pro1.model.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,6 +40,15 @@ public class Main {
                     print_students(sc,fakulta);
                     break;
                 case "6":
+                    print_ra(fakulta);
+                    break;
+                case "7":
+                    print_rozvrh(sc,fakulta);
+                    break;
+                case"8":
+                    add_ra_to_student(sc,fakulta);
+                    break;
+                case "9":
                     running = false;
                     break;
                 default:
@@ -58,7 +64,10 @@ public class Main {
                 help: 3
                 print predmet: 4
                 print student: 5
-                exit: 6""");
+                print ra: 6
+                print rozvrh: 7
+                add subject to student: 8
+                exit: 9""");
     }
 
     void print_teacher(Scanner sc, Fakulta fk){
@@ -95,21 +104,24 @@ public class Main {
         System.out.println("all students from fakulta: 1\n"
                 //+"teacher by id: 2\n"
         );
+
         String input = sc.nextLine();
-        if (input.equals("1")) {
+        switch (input) {
+            case "1":
             System.out.println("|---------|--------------------|-------|----|");
             for (Map.Entry<String, Student> entry : fk.getStudenti().entrySet()) {
                 System.out.println(entry.getValue().toTable());
                 System.out.println("|---------|--------------------|-------|----|");
             }
+            break;
             //students are not assigned id
-            //case "2":
-            //   System.out.println("enter id:");
-            //    tmp = sc.nextLine();
-            //    System.out.println("|---------|--------------------|-------|----|");
-            //   System.out.println(fk.getUcitele().get(tmp).toTable());
-            //   System.out.println("|---------|--------------------|-------|----|");
-            // break;
+            case "2":
+               System.out.println("enter name:");
+                input = sc.nextLine();
+                System.out.println("|---------|--------------------|-------|----|");
+               System.out.println(fk.getStudenti().get(input).toTable());
+               System.out.println("|---------|--------------------|-------|----|");
+             break;
         }
     }
     void print_predmet(Scanner sc, Fakulta fk){
@@ -130,4 +142,43 @@ public class Main {
             default:
         }
     }
-}
+
+    void print_rozvrh(Scanner sc,Fakulta fk){
+        String input;
+
+        System.out.println("enter name:");
+        input = sc.nextLine();
+        Student st = fk.getStudenti().get(input);
+        System.out.println("|---------|--------------------|-------|----|");
+        System.out.println(st.toTable());
+        System.out.println("|---------|--------------------|-------|----|");
+        Rozvrh rz = st.getRozvrh();
+        if (rz==null){return;}
+        System.out.println(rz);
+        }
+
+        void print_ra(Fakulta fk){
+            System.out.println(fk.ar());
+        }
+
+        void add_ra_to_student(Scanner sc, Fakulta fk){
+
+            System.out.println("which semester: ");
+            String input = sc.nextLine();
+            Semestr sm = Semestr.valueOf(input);
+            System.out.println("subject name: ");
+            input = sc.nextLine();
+            System.out.println(fk.ar().rozvrhPredmetu(sm,input).toString());
+            System.out.println("which one:");
+            input = sc.nextLine();
+            RozvrhovaAkce ra_tmp = fk.ar().getRa(Integer.parseInt(input));
+            System.out.println("which student");
+            input = sc.nextLine();
+            Student st = fk.getStudenti().get(input);
+            if (ra_tmp.pridatStudenta(st)){
+                st.add_subject(ra_tmp);
+            }
+
+            System.out.println(st.getRozvrh().to_table());
+        }
+    }

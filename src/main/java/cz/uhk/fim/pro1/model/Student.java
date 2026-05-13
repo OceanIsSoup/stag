@@ -15,7 +15,7 @@ public class Student extends Osoba {
 
     public Student (String jmeno, String prijmeni) {
         super(jmeno,prijmeni);
-        Rozvrh rozvrh = new Rozvrh();
+        this.rozvrh = new Rozvrh();
         zapsanePredmety = new ArrayList<>();
         this.rok = 1;
     }
@@ -24,9 +24,17 @@ public class Student extends Osoba {
         super(jmeno, prijmeni, email);
         this.username = username;
         this.obor = obor;
-        Rozvrh rozvrh = new Rozvrh();
+        this.rozvrh = new Rozvrh();
         zapsanePredmety = new ArrayList<>();
         this.rok = 1;
+    }
+
+    public void add_subject(RozvrhovaAkce ra) {
+        rozvrh.vlozAkci(0,ra);
+    }
+
+    public Rozvrh getRozvrh() {
+        return rozvrh;
     }
 
     @Override
@@ -36,7 +44,7 @@ public class Student extends Osoba {
         return s;
     }
     public String toTable(){
-        return "|"+String.format("%-8s | %-18s | %-5s | %-17s",id,jmeno+" "+prijmeni, rok, obor+"|");
+        return "|"+String.format("%-8s | %-18s | %-5s | %-17s",username,jmeno+" "+prijmeni, rok, obor+"|");
     }
 
 }

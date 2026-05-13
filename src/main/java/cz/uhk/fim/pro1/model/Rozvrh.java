@@ -3,6 +3,7 @@ package cz.uhk.fim.pro1.model;
 import javax.security.auth.Destroyable;
 import java.sql.Array;
 import java.time.LocalTime;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -45,5 +46,38 @@ public class Rozvrh {
             data[den].add(index,akce);
         else
             data[den].add(akce);
+    }
+
+    @Override
+    public String toString(){
+
+        return Arrays.toString(data);
+    }
+
+    public String to_table(){
+        StringBuilder str = new StringBuilder();
+        str.append("|------------------------------|\n");
+        data[0].forEach(e->{
+            str.append("|"+e.getPredmet().zkratka+" "+e.getDen()+" "+e.return_time()+"|\n");
+        });
+        data[1].forEach(e->{
+            str.append("|"+e.getPredmet().zkratka+" "+e.getDen()+" "+e.return_time()+"|\n");
+        });
+        data[2].forEach(e->{
+            str.append("|"+e.getPredmet().zkratka+" "+e.getDen()+" "+e.return_time()+"|\n");
+        });
+        data[3].forEach(e->{
+            str.append("|"+e.getPredmet().zkratka+" "+e.getDen()+" "+e.return_time()+"|\n");
+        });
+        data[4].forEach(e->{
+            str.append("|"+e.getPredmet().zkratka+" "+e.getDen()+" "+e.return_time()+"|\n");
+        });
+        data[5].forEach(e->{
+            str.append("|"+e.getPredmet().zkratka+" "+e.getDen()+" "+e.return_time()+"|\n");
+        });
+        data[6].forEach(e->{
+            str.append("|"+e.getPredmet().zkratka+" "+e.getDen()+" "+e.return_time()+"|\n");
+        });
+    return str.toString();
     }
 }

@@ -27,7 +27,7 @@ public class RozvrhovaAkce {
     @SerializedName("mistnost")
     Ucebna ucebna;
     @SerializedName("planObsazeni")
-    int kapacita;
+    int kapacita = 10;
     Ucitel ucitel;
     List<Student>  studenti;
 
@@ -69,6 +69,10 @@ public class RozvrhovaAkce {
         return den;
     }
 
+    public String return_time(){
+        return casOd.toString()+"-"+casDo.toString();
+    }
+
     public int prihlaseno() {
         return studenti.size();
     }
@@ -78,8 +82,9 @@ public class RozvrhovaAkce {
     }
 
     public boolean pridatStudenta(Student student) {
-        if (lzeZapsat(student))
+        if (lzeZapsat(student)) {
             return studenti.add(student);
+        }
         return false;
     }
 

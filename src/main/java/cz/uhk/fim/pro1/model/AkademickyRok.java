@@ -26,6 +26,9 @@ public class AkademickyRok {
         return rozvrhy[semestr.ordinal()].get(zkratka);
     }
 
+    public RozvrhovaAkce getRa(int i){
+        return rozvrhoveAkce.get(i);
+    }
     public AkademickyRok(int rok) {
         this.rok = rok;
         zacatek = LocalDate.of(rok,9,1);
